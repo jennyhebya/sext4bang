@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+  <title>Get what you need!</title>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <style>
+    /* --- RESET & BODY --- */
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* --- DYNAMIC BACKGROUND CONTAINER --- */
+    #dynamic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transition: opacity 1.5s ease-in-out;
+      opacity: 1;
+    }
+
+    /* Overlay gelap */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: -1;
+    }
+
+    /* --- WRAPPER UTAMA --- */
+    .wrapper { 
+      max-width: 600px; 
+      width: 90%; 
+      margin: auto; 
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .logo { 
+      width: 140px; 
+      margin-bottom: 20px; 
+      border-radius: 10px;
+    }
+
+    .slogan { 
+      font-size: 2rem; 
+      font-weight: 800; 
+      color: #ff0055; 
+      margin-bottom: 15px; 
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+    }
+
+    .header-text { 
+      font-size: 1.3rem; 
+      margin-bottom: 20px; 
+      line-height: 1.5;
+    }
+
+    .timer-text { 
+      margin-bottom: 30px; 
+      color: #ddd;
+      font-size: 0.9rem;
+    }
+
+    .timer { 
+      color: #ff4444; 
+      font-weight: bold; 
+      font-size: 1.2rem;
+    }
+    
+    /* Progress Bar */
+    .progress { 
+      width: 100%; 
+      background: rgba(255, 255, 255, 0.2); 
+      height: 8px; 
+      border-radius: 4px; 
+      overflow: hidden; 
+      margin-bottom: 35px; 
+    }
+    
+    .progress span { 
+      display: block; 
+      height: 100%; 
+      background: #ff0055; 
+      width: 0%; 
+      transition: width 0.4s ease; 
+      box-shadow: 0 0 10px #ff0055;
+    }
+    
+    /* Steps */
+    .step-item { 
+      display: none; 
+      animation: fadeIn 0.5s ease-in-out; 
+    }
+    .step-item.visible { display: block; }
+
+    .step-item p { 
+      font-size: 1.15rem; 
+      line-height: 1.6; 
+      margin-bottom: 30px; 
+    }
+    
+    /* Buttons */
+    .buttons-block { display: flex; flex-direction: column; gap: 15px; }
+
+    .step-btn { 
+      padding: 16px; border-radius: 50px; border: none; 
+      font-weight: bold; cursor: pointer; font-size: 1.1rem; 
+      width: 100%; transition: transform 0.2s; 
+      display: block;
+    }
+    
+    .step-btn:hover { transform: scale(1.02); }
+
+    .tr-next-button, .submit-btn { 
+      background: #ff0055; color: white; 
+      box-shadow: 0 5px 20px rgba(255, 0, 85, 0.4); 
+    }
+    
+    .no-btn { 
+      background: rgba(255, 255, 255, 0.1); 
+      border: 2px solid rgba(255, 255, 255, 0.3); 
+      color: #fff;
+    }
+    .no-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- 1. BACKGROUND ELEMENT -->
+  <div id="dynamic-bg"></div>
+  <div class="overlay"></div>
+
+  <div class="wrapper">
+    <img src="https://sext4bang.com/en/70/img/logo.png" alt="Logo" class="logo">
+    
+    <div class="slogan" data-key="slogan">Get what you need!</div>
+    <p class="header-text" data-key="header">Are you looking for hot women in your neighbourhood?</p>
+    <!-- Timer menampilkan 10:00 -->
+    <p class="timer-text"><b data-key="offer">Temporary offer</b>, valid for: <span class="timer">10:00</span></p>
+
+    <div class="progress"><span style="width: 0;"></span></div>
+
+    <!-- Step 1 -->
+    <div class="step-item visible">
+      <p data-key="q1">Are you over 18 years old?</p>
+      <div class="buttons-block">
+        <div class="step-btn no-btn" data-key="no">No</div>
+        <div class="step-btn tr-next-button" data-key="yes">Yes</div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-item">
+      <p data-key="q2">Many of these matures are desperately looking for casual sex meetups. They could be your neighbour or someone you know. Can you keep the identity of these moms a secret?</p>
+      <div class="buttons-block">
+        <div class="step-btn no-btn" data-key="no">No</div>
+        <div class="step-btn tr-next-button" data-key="yes">Yes</div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-item">
+      <p data-key="q3">Our female members requested us to not admit male members looking for a “relationship”. Many just want to fuck and embark on casual hookups. Do you agree with this request?</p>
+      <div class="buttons-block">
+        <div class="step-btn no-btn" data-key="no">No</div>
+        <div class="step-btn tr-next-button" data-key="yes">Yes</div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-item">
+      <p data-key="q4">Have you ever had an STD?</p>
+      <div class="buttons-block">
+        <div class="step-btn no-btn" data-key="no">No</div>
+        <div class="step-btn tr-next-button" data-key="yes">Yes</div>
+      </div>
+    </div>
+
+    <!-- Final Step -->
+    <div class="step-item">
+      <p data-key="final">You are now allowed to continue. You can go through the list of females in your neighbourhood to browse their pictures. Click on below button to continue.</p>
+      <div class="buttons-block">
+        <a href="#" class="step-btn submit-btn" id="agreeclick" data-key="continue">Continue &amp; FUCK</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. LOGIKA BACKGROUND SLIDESHOW
+    // ==========================================
+    
+    const bgList = [
+      "https://pbs.twimg.com/media/G2sm3LzboAAjzeE?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G2sm3MEaEAATAzo?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G2sm3LxawAAyyxw?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G12V4R6aQAEyGqZ?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G12V4RybUAE1cNZ?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G12V1sWbIAAjA_l?format=jpg&name=large"
+    ];
+
+    const bgElement = document.getElementById('dynamic-bg');
+    bgElement.style.backgroundImage = `url('${bgList[0]}')`;
+
+    let bgIndex = 0;
+
+    function changeBackground() {
+      bgElement.style.opacity = 0; 
+      setTimeout(() => {
+        bgIndex = (bgIndex + 1) % bgList.length;
+        bgElement.style.backgroundImage = `url('${bgList[bgIndex]}')`;
+        bgElement.style.opacity = 1; 
+      }, 1500);
+    }
+
+    setTimeout(changeBackground, 5000);
+    setInterval(changeBackground, 6500);
+
+
+    // ==========================================
+    // 2. LOGIKA QUIZ & REDIRECT OTOMATIS
+    // ==========================================
+
+    // --- KONFIGURASI LINK TUJUAN ---
+    // Ganti URL di bawah ini dengan link affiliate/offer Anda
+    const REDIRECT_TARGET = "https://zokxjg.datingllove.com/?utm_source=da57dc555e50572d&s1=188302&s2=2150610&s3=INSTA&click_id=INSTA&ban=other&j1=1"; 
+
+    // --- TIMER & REDIRECT 1 MENIT / SELESAI QUIZ ---
+    
+    // Set total waktu timer ke 10 Menit (untuk tampilan)
+    let totalDisplaySeconds = 10 * 60; 
+    // Set batas waktu redirect ke 1 Menit (60 detik)
+    const REDIRECT_SECONDS = 60;
+    
+    let secondsElapsed = 0;
+    const timerEl = document.querySelector('.timer');
+    
+    function doRedirect() {
+      window.location.href = REDIRECT_TARGET;
+    }
+
+    const timerInterval = setInterval(() => {
+      secondsElapsed++;
+      totalDisplaySeconds--;
+
+      // Update tampilan timer (hitung mundur dari 10:00)
+      const mins = String(Math.floor(totalDisplaySeconds / 60)).padStart(2, '0');
+      const secs = String(totalDisplaySeconds % 60).padStart(2, '0');
+      timerEl.textContent = mins + ':' + secs;
+
+      // Cek jika waktu sudah mencapai 1 menit (60 detik)
+      if (secondsElapsed >= REDIRECT_SECONDS) {
+        clearInterval(timerInterval);
+        doRedirect();
+      }
+
+      // Stop timer visual jika sudah habis 10 menit (tapi redirect sudah terjadi di 1 menit)
+      if (totalDisplaySeconds <= 0) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+
+
+    // --- TRANSLATIONS ---
+    const translations = {
+      en: { slogan: "Get what you need!", header: "Are you looking for hot women in your neighbourhood?", offer: "Temporary offer", q1: "Are you over 18 years old?", q2: "Many of these matures are desperately looking for casual sex meetups. They could be your neighbour or someone you know. Can you keep the identity of these moms a secret?", q3: "Our female members requested us to not admit male members looking for a “relationship”. Many just want to fuck and embark on casual hookups. Do you agree with this request?", q4: "Have you ever had an STD?", final: "You are now allowed to continue. You can go through the list of females in your neighbourhood to browse through their pictures. Click on below button to continue.", continue: "Continue &amp; FUCK", yes: "Yes", no: "No" },
+      id: { slogan: "Dapatkan yang kamu butuhkan!", header: "Apakah kamu mencari wanita seksi di lingkunganmu?", offer: "Penawaran sementara", q1: "Apakah kamu berusia di atas 18 tahun?", q2: "Banyak wanita dewasa ini sangat ingin bertemu untuk seks santai. Bisa jadi tetanggamu atau orang yang kamu kenal. Bisakah kamu menjaga rahasia identitas ibu-ibu ini?", q3: "Anggota wanita kami meminta untuk tidak menerima pria yang mencari «hubungan». Banyak yang hanya ingin bercinta dan petualangan santai. Apakah kamu setuju?", q4: "Apakah kamu pernah menderita PMS?", final: "Sekarang kamu diizinkan untuk melanjutkan. Kamu bisa melihat daftar wanita di sekitarmu dan foto-foto mereka. Klik tombol di bawah untuk melanjutkan.", continue: "Lanjutkan &amp; NGENTOT", yes: "Ya", no: "Tidak" }
+    };
+
+    // Terjemahan
+    const userLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+    const lang = translations[userLang] ? userLang : 'en';
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+
+    // --- NAVIGASI QUIZ (YES & NO SAMA-SAMA LANJUT) ---
+    
+    const totalSteps = document.querySelectorAll('.step-item').length - 1;
+    let currentStep = 0;
+    const progressBar = document.querySelector('.progress span');
+
+    function nextStep() {
+      const next = document.querySelectorAll('.step-item')[currentStep + 1];
+      if (next) {
+        document.querySelector('.step-item.visible').classList.remove('visible');
+        next.classList.add('visible');
+        currentStep++;
+        progressBar.style.width = ((currentStep / totalSteps) * 100) + '%';
+
+        // JIKA SUDAH SAMPAI STEP TERAKHIR, REDIRECT OTOMATIS
+        if (currentStep >= totalSteps) {
+          clearInterval(timerInterval); // Stop timer
+          setTimeout(() => {
+            doRedirect();
+          }, 1000); // Delay 1 detik sebelum redirect agar user melihat tombol final dulu
+        }
+      }
+    }
+
+    // Klik tombol Yes
+    $('.tr-next-button').on('click', function() {
+      nextStep(); 
+    });
+
+    // Klik tombol No
+    $('.no-btn').on('click', function() {
+      nextStep();
+    });
+
+    // Event tombol final (manual click)
+    $('#agreeclick').on('click', function(e) {
+      e.preventDefault(); 
+      doRedirect();
+    });
+
+    // Title Flicker
+    let titleState = 0;
+    setInterval(() => {
+      document.title = titleState ? '(2) new messages' : document.querySelector('.slogan').textContent;
+      titleState = 1 - titleState;
+    }, 1000);
+
+  </script>
+</body>
+</html>
