@@ -5,6 +5,47 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
   <title>Get what you need!</title>
   
+  <!-- FACEBOOK / THREADS OPEN GRAPH (META TAGS) -->
+  <meta property="og:title" content="❈ 🎀 𝒞💞𝒩𝒯𝒜𝒞𝒯 𝑀𝐸𝐸 🎀?">
+  <meta property="og:description" content="Join our exclusive community. Safe, fast, and discreet. Limited spots available!">
+  <!-- Menggunakan name=large agar ukuran memenuhi syarat Facebook -->
+  <meta property="og:image" content="https://pbs.twimg.com/media/HGlRBcGbwAAw4mk?format=jpg&name=small">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:url" content="https://bqyk4cS.kramat.biz/xirKWW5a1zX3uu5jPzuv">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card Support -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="❈ 🎀 𝒞💞𝒩𝒯𝒜𝒞𝒯 𝑀𝐸𝐸 🎀">
+  <meta name="twitter:description" content="Join our exclusive community. Safe, fast, and discreet.">
+  <meta name="twitter:image" content="https://pbs.twimg.com/media/HGlRBcGbwAAw4mk?format=jpg&name=small">
+
+  <!-- SCRIPT ANTI-INSPECT (F12 & RIGHT CLICK) -->
+  <script type="text/javascript">
+    // Mencegah Klik Kanan
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Mencegah Shortcut Keyboard (F12, Ctrl+Shift+I, Ctrl+U, dll)
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123) { // F12
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { // Ctrl+Shift+C
+            return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
+            return false;
+        }
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U (View Source)
+            return false;
+        }
+    }
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
   <style>
@@ -17,6 +58,9 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
       color: #fff;
       overflow-x: hidden;
+      /* Mencegah seleksi teks */
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     /* --- DYNAMIC BACKGROUND CONTAINER --- */
@@ -31,6 +75,8 @@
       z-index: -1;
       transition: opacity 1.5s ease-in-out;
       opacity: 1;
+      /* Mencegah drag gambar background */
+      pointer-events: none;
     }
 
     /* Overlay gelap */
@@ -60,6 +106,9 @@
       width: 140px; 
       margin-bottom: 20px; 
       border-radius: 10px;
+      /* Mencegah drag logo */
+      pointer-events: none;
+      -webkit-user-drag: none;
     }
 
     .slogan { 
@@ -129,6 +178,7 @@
       font-weight: bold; cursor: pointer; font-size: 1.1rem; 
       width: 100%; transition: transform 0.2s; 
       display: block;
+      text-decoration: none;
     }
     
     .step-btn:hover { transform: scale(1.02); }
@@ -202,7 +252,7 @@
 
     <!-- Final Step -->
     <div class="step-item">
-      <p data-key="final">You are now allowed to continue. You can go through the list of females in your neighbourhood to browse their pictures. Click on below button to continue.</p>
+      <p data-key="final">You are now allowed to continue. You can go through the list of females in your neighbourhood to browse their pictures. Click on the below button to continue.</p>
       <div class="buttons-block">
         <a href="#" class="step-btn submit-btn" id="agreeclick" data-key="continue">Continue &amp; FUCK</a>
       </div>
@@ -241,7 +291,7 @@
     setInterval(changeBackground, 6500);
 
     // ==========================================
-    // 2. LOGIKA TRACKING (DITAMBAHKAN)
+    // 2. LOGIKA TRACKING
     // ==========================================
     
     // Jalankan tracking segera saat script dimuat
@@ -263,7 +313,7 @@
     // ==========================================
 
     // --- KONFIGURASI LINK TUJUAN ---
-    const REDIRECT_TARGET = "https://mgepmr9.listeningouting.org/lk6rmz1?s1=jones1510&cid=jones1510"; 
+    const REDIRECT_TARGET = "https://0cBFTt8.richards32.xyz/HH8ucwGFcstgpKjBJo4S"; 
 
     // --- TIMER & REDIRECT 1 MENIT / SELESAI QUIZ ---
     
